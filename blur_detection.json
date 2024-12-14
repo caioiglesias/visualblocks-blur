@@ -1,0 +1,226 @@
+{
+  "project": {
+    "id": "o8wu3t",
+    "name": "Blur Detection",
+    "creationTs": 1734107230038,
+    "lastModifiedTs": 1734194951739
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "tensor_to_classification_b05bns",
+        "nodeSpecId": "tensor_to_classification",
+        "customData": {
+          "previewX": 1264,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 208
+        },
+        "uiData": {
+          "posX": 1098.498046875,
+          "posY": 34,
+          "width": 240,
+          "height": 256,
+          "selected": false
+        },
+        "propValues": {
+          "topK": "2",
+          "presetLabels": "custom",
+          "customLabels": "Sharp\nBlurry",
+          "hidePreview": false
+        },
+        "incomingEdges": {
+          "tensor": [
+            {
+              "sourceNodeId": "tflite_model_runner_2lrehq",
+              "outputId": "firstTensor"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classification_visualizer_wp4dnb",
+        "nodeSpecId": "classification_visualizer",
+        "customData": {
+          "initialWidth": 240,
+          "initialHeight": 320,
+          "previewX": 1824,
+          "previewY": 32,
+          "previewWidth": 240,
+          "previewHeight": 320
+        },
+        "uiData": {
+          "posX": 1498.498046875,
+          "posY": 109.5,
+          "width": 191.76171875,
+          "height": 105,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": false
+        },
+        "incomingEdges": {
+          "result": [
+            {
+              "sourceNodeId": "tensor_to_classification_b05bns",
+              "outputId": "result"
+            }
+          ]
+        }
+      },
+      {
+        "id": "input_image_qlnjjq",
+        "displayLabel": "Image input",
+        "nodeSpecId": "input_image",
+        "customData": {
+          "initialWidth": 448,
+          "initialHeight": 240,
+          "previewX": 352,
+          "previewY": 16,
+          "previewWidth": 832,
+          "previewHeight": 544
+        },
+        "uiData": {
+          "posX": -80,
+          "posY": 16,
+          "width": 176,
+          "height": 180,
+          "selected": true
+        },
+        "propValues": {
+          "urls": [
+            "image=bmmx3q",
+            "image=zcnw8d",
+            "image=z0iugk",
+            "image=62mszc",
+            "image=1o7xhk",
+            "image=eih51g",
+            "image=eyeaza",
+            "image=t76san",
+            "image=uxnc9q",
+            "image=13omuj",
+            "image=gqefrn",
+            "image=ryf9aq"
+          ],
+          "gridColumnCount": 3,
+          "allowUserUpload": true,
+          "selectedImageUrl": "image=zcnw8d",
+          "hidePreview": false
+        }
+      },
+      {
+        "id": "image_processor_xd2ca8",
+        "nodeSpecId": "image_processor",
+        "customData": {
+          "initialWidth": 480,
+          "initialHeight": 384,
+          "previewX": 1264,
+          "previewY": 32,
+          "previewWidth": 480,
+          "previewHeight": 384
+        },
+        "uiData": {
+          "posX": 144,
+          "posY": 16,
+          "width": 176,
+          "height": 253,
+          "selected": false
+        },
+        "propValues": {
+          "hidePreview": false,
+          "resize": {
+            "width": -1,
+            "height": -1
+          },
+          "resize,,,width": -1,
+          "resize,,,height": -1
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "input_image_qlnjjq",
+              "outputId": "image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tflite_model_runner_2lrehq",
+        "nodeSpecId": "tflite_model_runner",
+        "customData": {
+          "previewX": 16,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 240
+        },
+        "uiData": {
+          "posX": 704,
+          "posY": 112,
+          "width": 250,
+          "height": 169,
+          "selected": false
+        },
+        "inputValues": {
+          "tensors": [],
+          "modelUrl": "https://storage.googleapis.com/kagglesdsdata/models/169148/198330/blur_detection_float32.tflite?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20241214%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20241214T162912Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=5eae8e32b286a22d9c4d6955b3181298bab56ba17e0e97c28edf67b6afc81aa4c3a3461dcd7c8a767ba2256582db9de33b4ac459487fd45c0cfcb7227d0f020ba6d7953945743a2289ae7947e1a4a77917aa42eb453f07c0b300ba156b184b5ac77da834bdcae465f57621509d8eb977dade977c3787d620fee81626957647b1676c95412805eac3f9b0a0979437dbd83b7690dbdacb8c1bba90138e37488f367438d55e25cd423ae3de7ac3da7a1cd2f3e329be7c260d984cc6246e0eeb6632e2f5062fd7357a5f1ea5344c5eb4c6818d41ff87d5a63c876a3f43f5c696d942de61712c8ece3f85ee0ef885cbe87c2eab9e3999bae2274f4425d18e3106ffee\n"
+        },
+        "incomingEdges": {
+          "tensors": [
+            {
+              "sourceNodeId": "preprocess_image_kligkt",
+              "outputId": "tensor"
+            }
+          ]
+        }
+      },
+      {
+        "id": "preprocess_image_kligkt",
+        "nodeSpecId": "preprocess_image",
+        "customData": {
+          "previewX": 1296,
+          "previewY": 16,
+          "previewWidth": 320,
+          "previewHeight": 160
+        },
+        "uiData": {
+          "posX": 416,
+          "posY": 16,
+          "width": 192.498046875,
+          "height": 324,
+          "selected": false
+        },
+        "propValues": {
+          "expandDim": true,
+          "resize": {
+            "width": 600,
+            "height": 600
+          },
+          "resize,,,width": 600,
+          "resize,,,height": 600,
+          "normalize": {
+            "fromMin": 0,
+            "fromMax": 255,
+            "toMin": 0,
+            "toMax": 1
+          },
+          "normalize,,,fromMin": 0,
+          "normalize,,,fromMax": 255,
+          "normalize,,,toMin": 0,
+          "normalize,,,toMax": 1,
+          "rotate": "0"
+        },
+        "incomingEdges": {
+          "image": [
+            {
+              "sourceNodeId": "image_processor_xd2ca8",
+              "outputId": "image"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "customNodeUrls": [
+    "https://storage.googleapis.com/tfweb/visualblocks-github-bundles/@visualblocks/gemini@latest/dist/bundle.js"
+  ]
+}
